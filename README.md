@@ -48,4 +48,4 @@ THEN the saved events persist
 
 ## Deployed Webpage
 
-The published page is available here: 
+The published page is available here: https://olivercray.github.io/week-5-work-day-scheduler/
