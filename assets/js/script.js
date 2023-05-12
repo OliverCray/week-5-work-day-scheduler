@@ -20,8 +20,13 @@ $(document).ready(function () {
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
+  // Store start and end work hours
   var workHours = {
     startHour: 9,
     endHour: 17
   }
+
+  var saveButton = $('.saveBtn')
+
+  saveButton.on('click', onSaveClick)
 });
