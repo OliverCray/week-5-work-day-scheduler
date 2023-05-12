@@ -26,7 +26,17 @@ $(document).ready(function () {
     endHour: 17
   }
 
+  // Assign elements with class of saveBtn to the variable saveButton
   var saveButton = $('.saveBtn')
 
+  // Saves event into local storage using data-hour as a key
+  function onSaveClick() {
+    var hour = $(this).parent().attr('data-hour')
+    var userEvent = $(this).siblings('.description').val()
+
+    localStorage.setItem(hour, userEvent)
+  }
+
+  // Event listener for clicks on save button, will execute onSaveClick function
   saveButton.on('click', onSaveClick)
 });
