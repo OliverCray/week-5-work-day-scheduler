@@ -37,6 +37,33 @@ $(document).ready(function () {
     localStorage.setItem(hour, userEvent)
   }
 
+  // Applies correct class to each time block relative to the current time
+  function applyClass() {
+    // Use dayjs to get the current hour
+    var currentHour = dayjs().hour()
+    var timeBlock = $('.time-block')
+
+    timeBlock.each(function() {
+      // Take the value of each blocks data-hour and convert into an integer
+      var blockHour = parseInt($(this).attr('data-hour'))
+      console.log(blockHour)
+
+      // Rules for class application
+      if (blockHour < currentHour) {
+        $(this).addClass('past')
+      } else if (blockHour === currentHour) {
+        $(this).addClass('present')
+      } else {
+        $(this).addClass('future')
+      }
+    })
+  }
+
+  // Call applyClass function
+  applyClass()
+  // Run applyClass function every 10 seconds to make sure classes are up to date
+  setInterval(applyClass, 10000)
+
   // Event listener for clicks on save button, will execute onSaveClick function
   saveButton.on('click', onSaveClick)
 });
