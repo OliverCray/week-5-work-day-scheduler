@@ -20,11 +20,37 @@ $(document).ready(function () {
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
+
   // Store start and end work hours
   var workHours = {
     startHour: 9,
     endHour: 17
   }
+
+  // Dynamically generates each time block on the page for specified hours
+  // Must be loaded before assigning save button, otherwise '.saveBtn' doesn't exist on assigment
+  function generateTimeBlocks() {
+
+    // Loop through each hour
+    for (hour = workHours.startHour; hour <= workHours.endHour; hour++) {
+      // Get events out of local storage for each hour, set a default value of '' if there's nothing in local storage
+      var savedEvent = localStorage.getItem(hour) || ''
+      // html for each time-block, updates with the correct hour and savedEvent
+      var html = `<div class="row time-block" data-hour="${hour}">
+      <div class="col-2 col-md-1 hour text-center py-3">${hour}</div>
+      <textarea class="col-8 col-md-10 description" rows="3">${savedEvent}</textarea>
+      <button class="btn saveBtn col-2 col-md-1" aria-label="save">
+        <i class="fas fa-save" aria-hidden="true"></i>
+      </button>
+    </div>`
+
+    // Append html to the container
+    $('.container-lg').append(html)
+    }
+  }
+
+  // Call generateTimeBlocks function
+  generateTimeBlocks()
 
   // Assign elements with class of saveBtn to the variable saveButton
   var saveButton = $('.saveBtn')
